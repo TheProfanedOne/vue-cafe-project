@@ -1,10 +1,10 @@
 <?php
 
 class DB {
-    private string $host = 'localhost';
-    private string $db = 'steverq1_matthew';
-    private string $user = 'steverq1_matthew';
-    private string $pass = 'Csci213+#001';
+    private const host = 'localhost';
+    private const db   = 'steverq1_matthew';
+    private const user = 'steverq1_matthew';
+    private const pass = 'Csci213+#001';
 
     public $conn;
 
@@ -12,10 +12,10 @@ class DB {
         $this->conn = null;
         try {
             $this->conn = new PDO(
-                'mysql:host=' . $this->host .
-                ';dbname=' . $this->db,
-                $this->user,
-                $this->pass
+                'mysql:host=' . self::host .
+                ';dbname=' . self::db,
+                self::user,
+                self::pass
             );
             $this->conn->exec('set names utf8');
         } catch (PDOException $exception) {
