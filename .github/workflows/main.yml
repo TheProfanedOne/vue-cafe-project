@@ -15,3 +15,4 @@ jobs:
         username: matthew@matthew.steverobinett.net
         password: ${{ secrets.ftp_password }}
         local-dir: dist/
+        port: 21
