@@ -19,7 +19,7 @@ $stmt->bind_result($first_name, $last_name, $pass);
 $row_count = $stmt->num_rows();
 
 if ($row_count == 1) {
-    $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->fetch();
     $data = array(
         'first_name' => $first_name,
         'last_name' => $last_name,
