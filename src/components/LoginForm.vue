@@ -19,16 +19,16 @@
     const email = ref('');
     const pass = ref('');
 
-    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
     const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     async function handleLogin() {
         if (!firstName.value || !lastName.value || !email.value || !pass.value) {
             alert('Please fill out all fields.');
-        } else if (!email.value.match(emailRegex)) {
+        } else if (!emailRegex.test(email.value)) {
             alert('Please enter a valid email address.');
             email.value = '';
-        } else if (!pass.value.match(passRegex)) {
+        } else if (!passRegex.test(pass.value)) {
             const msg1 = 'Please enter a password of at least 8 characters,';
             const msg2 = 'at least one uppercase letter, one lowercase letter,';
             const msg3 = 'one number and one special character ( @$!%*?& ).';
