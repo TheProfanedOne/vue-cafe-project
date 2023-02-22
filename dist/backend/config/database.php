@@ -2,24 +2,25 @@
 
 class DB {
     private const host = 'localhost';
-    private const db   = 'steverq1_matthew';
+    private const name = 'steverq1_matthew';
     private const user = 'steverq1_matthew';
     private const pass = 'Csci213+#001';
 
     public $conn;
 
-    public function get_connection(): PDO {
+    public function get_connection(): mysqli {
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         $this->conn = null;
         try {
-            $this->conn = new PDO(
-                'mysql:host=' . self::host .
-                ';dbname=' . self::db,
+            $this->conn = new mysqli(
+                self::host,
                 self::user,
-                self::pass
+                self::pass,
+                self::name
             );
-            $this->conn->exec('set names utf8');
-        } catch (PDOException $exception) {
-            echo 'Database not connected: ' . $exception->getMessage();
+            $this->conn->set_charset('utf8');
+        } catch (mysqli_sql_exception $e) {
+            echo 'Database not connected: ' . $e->getMessage();
         }
         return $this->conn;
     }

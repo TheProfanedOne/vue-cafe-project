@@ -14,13 +14,14 @@ $db = $database->get_connection();
 $items = new Menu($db);
 $items->cat_name = isset($_GET['cat_name']) ? $_GET['cat_name'] : die();
 $stmt = $items->get_menu();
-$row_count = $stmt->rowCount();
+$stmt->store_result();
+$stmt->bind_result($item_name, $item_price, $img_src, $img_alt);
+$row_count = $stmt->num_rows();
 
 if ($row_count > 0) {
     $menu_arr = array();
 
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
+    while ($stmt->fetch()) {
         $item = array(
             'item_name' => $item_name,
             'item_price' => $item_price,

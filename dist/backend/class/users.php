@@ -1,21 +1,21 @@
 <?php
 
 class Users {
-    private PDO $conn;
+    private mysqli $conn;
 
     public string $first_name;
     public string $last_name;
     public string $email;
     public string $pass;
 
-    public function __construct(PDO $db) {
+    public function __construct(mysqli $db) {
         $this->conn = $db;
     }
 
     public function create_user(): bool {
         $query = <<<SQL
             INSERT INTO users (first_name, last_name, email, pass)
-            VALUES (:first_name, :last_name, :email, :pass)
+            VALUES (?, ?, ?, ?)
         SQL;
 
         $stmt = $this->conn->prepare($query);
@@ -25,10 +25,12 @@ class Users {
         $this->email = htmlspecialchars(strip_tags($this->email));
         $this->pass = htmlspecialchars(strip_tags($this->pass));
 
-        $stmt->bindParam(':first_name', $this->first_name);
-        $stmt->bindParam(':last_name', $this->last_name);
-        $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':pass', $this->pass);
+        $stmt->bind_param('ssss',
+            $this->first_name,
+            $this->last_name,
+            $this->email,
+            $this->pass
+        );
 
         return $stmt->execute();
     }
@@ -36,12 +38,12 @@ class Users {
     public function user_lookup() {
         $query = <<<SQL
             SELECT first_name, last_name, pass FROM users
-            WHERE email = :email
+            WHERE email = ?
         SQL;
         
         $stmt = $this->conn->prepare($query);
         $this->email = htmlspecialchars(strip_tags($this->email));
-        $stmt->bindParam(':email', $this->email);
+        $stmt->bind_param('s', $this->email);
         $stmt->execute();
         return $stmt;
     }

@@ -14,11 +14,12 @@ $db = $database->get_connection();
 $item = new Users($db);
 $item->email = isset($_GET['email']) ? $_GET['email'] : die();
 $stmt = $item->user_lookup();
-$row_count = $stmt->rowCount();
+$stmt->store_result();
+$stmt->bind_result($first_name, $last_name, $pass);
+$row_count = $stmt->num_rows();
 
 if ($row_count == 1) {
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    extract($row);
+    $stmt->fetch(PDO::FETCH_ASSOC);
     $data = array(
         'first_name' => $first_name,
         'last_name' => $last_name,
