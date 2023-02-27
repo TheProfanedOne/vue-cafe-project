@@ -14,10 +14,11 @@ $db = $database->get_connection();
 
 $item = new Users($db);
 
-$item->first_name = $_POST['first_name'];
-$item->last_name = $_POST['last_name'];
-$item->email = $_POST['email'];
-$item->pass = $_POST['pass'];
+$data = json_decode(file_get_contents("php://input"));
+$item->first_name = $data->first_name;
+$item->last_name = $data->last_name;
+$item->email = $data->email;
+$item->pass = $data->pass;
 
 http_response_code(201);
 if ($item->create_user()) {
