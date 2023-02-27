@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import { DateTime } from 'luxon';
-    import type { SpecialBundle } from '@/stores/item-types';
+    import type { SpecialBundle } from '@/types/item-types';
     import sds from '@/service/SpecialsDataService';
     import useTitle from '@/composables/title';
     import imageLinks from '@/composables/imageLinks';

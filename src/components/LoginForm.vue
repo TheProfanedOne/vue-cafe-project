@@ -7,9 +7,7 @@
 
     useTitle('Login/Register');
 
-    defineProps<{
-        currentUser: string;
-    }>();
+    defineProps<{ currentUser: string }>();
     const emit = defineEmits<{
         (e: 'update:currentUser', newValue: string): void;
     }>();

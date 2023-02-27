@@ -1,13 +1,10 @@
 <script setup lang="ts">
     import HomeAsync from './async/HomeAsync.vue';
-    import type { SpecialBundle } from '@/stores/item-types';
+    import type { SpecialBundle } from '@/types/item-types';
 
-    const props = defineProps<{
-        spec: SpecialBundle;
-    }>();
-
+    const props = defineProps<{ modelValue: SpecialBundle }>();
     const emit = defineEmits<{
-        (e: 'update:spec', newValue: SpecialBundle): void;
+        (e: 'update:modelValue', newValue: SpecialBundle): void;
     }>();
 </script>
 
@@ -15,8 +12,8 @@
     <Suspense>
         <template #default>
             <HomeAsync
-                :spec="props.spec"
-                @update:spec="newValue => emit('update:spec', newValue)"
+                :spec="props.modelValue"
+                @update:spec="newValue => emit('update:modelValue', newValue)"
             />
         </template>
         <template #fallback>

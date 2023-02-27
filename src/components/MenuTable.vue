@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import type { MenuItem } from '@/stores/item-types';
+    import type { MenuItem } from '@/types/item-types';
     import imageLinks from '@/composables/imageLinks';
 
     const props = defineProps<{
