@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import bannerUrl from '@/assets/images/banner.jpg';
+    import bannerUrl from '@/assets/images/header/banner.jpg';
 
     const props = defineProps<{ currMenu: string }>();
     const emit = defineEmits<{

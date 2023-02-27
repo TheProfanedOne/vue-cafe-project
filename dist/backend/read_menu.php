@@ -18,6 +18,7 @@ $stmt->store_result();
 $stmt->bind_result($item_name, $item_price, $img_src, $img_alt);
 $row_count = $stmt->num_rows();
 
+http_response_code(200);
 if ($row_count > 0) {
     $menu_arr = array();
 
@@ -31,9 +32,7 @@ if ($row_count > 0) {
         array_push($menu_arr, $item);
     }
 
-    http_response_code(200);
     echo json_encode($menu_arr);
 } else {
-    http_response_code(200);
     echo json_encode("Error: Invalid category");
 }

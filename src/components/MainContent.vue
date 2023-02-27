@@ -7,10 +7,10 @@
 
     const props = defineProps<{ currMenu: string }>();
 
-    const spec = ref({
+    const spec = ref<SpecialBundle>({
         item: null,
         now: DateTime.now(),
-    } as SpecialBundle);
+    });
     const b_items = ref<MenuItem[]>([]);
     const l_items = ref<MenuItem[]>([]);
     const d_items = ref<MenuItem[]>([]);
@@ -36,15 +36,13 @@
         border-collapse: collapse;
         color: $aw;
 
-        &,
-        td {
+        &, td {
             border: 1px solid;
         }
         th {
             border: 2px solid;
         }
-        th,
-        td {
+        th, td {
             width: 12rem;
             box-sizing: border-box;
             position: relative;
@@ -55,6 +53,8 @@
             box-sizing: border-box;
         }
         td {
+            padding: 5px;
+
             &.full-row {
                 text-align: center;
                 padding: 20px 0;
@@ -62,11 +62,8 @@
             &.with-image {
                 padding: 0;
             }
-            &:not(.with-image) {
-                padding: 5px;
-            }
         }
-        .with-image:is(th, td) {
+        .with-image {
             width: auto;
         }
     }

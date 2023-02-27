@@ -9,19 +9,17 @@ export type User = {
     pass: string;
 };
 
-class UsersDataService {
-    userLookup(email: string) {
-        return axios.get(`${API_URL}/user_lookup.php`, {
-            params: {
-                email: email,
-            },
-        });
-    }
-
-    createUser(user: User) {
-        return axios.post(`${API_URL}/create_user.php`, user);
-    }
+export function userLookup(email: string) {
+    return axios.get(`${API_URL}/user_lookup.php`, {
+        params: {
+            email: email,
+        },
+    });
 }
 
-const uds = new UsersDataService();
+export function createUser(user: User) {
+    return axios.post(`${API_URL}/create_user.php`, user);
+}
+
+const uds = { userLookup, createUser };
 export default uds;

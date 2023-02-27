@@ -18,6 +18,7 @@ $stmt->store_result();
 $stmt->bind_result($first_name, $last_name, $pass);
 $row_count = $stmt->num_rows();
 
+http_response_code(200);
 if ($row_count == 1) {
     $stmt->fetch();
     $data = array(
@@ -25,12 +26,9 @@ if ($row_count == 1) {
         'last_name' => $last_name,
         'pass' => $pass
     );
-    http_response_code(200);
     echo json_encode($data);
 } else if ($row_count > 1) {
-    http_response_code(500);
-    echo json_encode('Duplicate user present.');
+    echo json_encode('Error: Duplicate User Present');
 } else {
-    http_response_code(200);
-    echo json_encode('User not present.');
+    echo json_encode(sprintf('User not found. Register "%s" as a new user?', $item->email));
 }

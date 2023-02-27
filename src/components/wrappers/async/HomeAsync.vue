@@ -3,6 +3,7 @@
     import type { SpecialBundle } from '@/stores/item-types';
     import sds from '@/service/SpecialsDataService';
     import useTitle from '@/composables/title';
+    import imageLinks from '@/composables/imageLinks';
 
     useTitle('Rise and Grind Cafe');
 
@@ -15,24 +16,15 @@
     }>();
 
     const rightNow = DateTime.now();
-    const dayName = rightNow.toFormat('cccc');
+    const dayName = rightNow.weekdayLong;
 
-    if (props.spec.item === null || props.spec.now.toFormat('cccc') !== dayName) {
-        const res = await sds.retrieveDailySpecial(dayName);
-        if (res.data !== 'Error: No Special Found') {
-            emit('update:spec', {
-                item: res.data,
-                now: rightNow,
-            });
-        } else {
-            emit('update:spec', {
-                item: null,
-                now: rightNow,
-            });
-        }
+    if (props.spec.item === null || props.spec.now.weekday !== rightNow.weekday) {
+        const res = await sds.retrieveSpecial(dayName);
+        emit('update:spec', {
+            item: res.data !== 'Error: No Special Found' ? res.data : null,
+            now: rightNow,
+        });
     }
-
-
 </script>
 
 <template>
@@ -55,7 +47,7 @@
                     <td>{{ spec.item.spec_name }}</td>
                     <td>{{ spec.item.spec_price }}</td>
                     <td class="with-image">
-                        <img :src="spec.item.img_src" :alt="spec.item.img_alt" />
+                        <img :src="imageLinks[spec.item.img_src]" :alt="spec.item.img_alt" />
                     </td>
                 </template>
                 <td v-else colspan="4" class="full-row">

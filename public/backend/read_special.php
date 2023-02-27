@@ -17,6 +17,7 @@ $stmt = $item->get_daily_special();
 $stmt->store_result();
 $stmt->bind_result($cat_name, $spec_name, $spec_price, $img_src, $img_alt);
 
+http_response_code(200);
 if ($stmt->fetch()) {
     $special = array(
         'cat_name' => $cat_name,
@@ -26,9 +27,7 @@ if ($stmt->fetch()) {
         'img_alt' => $img_alt
     );
 
-    http_response_code(200);
     echo json_encode($special);
 } else {
-    http_response_code(200);
     echo json_encode("Error: No Special Found");
 }

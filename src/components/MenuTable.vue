@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import type { MenuItem } from '@/stores/item-types';
+    import imageLinks from '@/composables/imageLinks';
 
     const props = defineProps<{
         currMenu: string;
@@ -24,7 +25,7 @@
                 <td>{{ item.item_name }}</td>
                 <td>{{ item.item_price }}</td>
                 <td class="with-image">
-                    <img :src="item.img_src" :alt="item.img_alt" />
+                    <img :src="imageLinks[item.img_src]" :alt="item.img_alt" />
                 </td>
             </tr>
         </tbody>

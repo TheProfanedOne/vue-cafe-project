@@ -16,7 +16,7 @@
     }>();
 
     if (props.d_items.length === 0) {
-        const res = await mds.retrieveMenuItems(props.currMenu);
+        const res = await mds.retrieveMenu(props.currMenu);
         if (res.data !== 'Error: Invalid Category') {
             emit('update:d_items', res.data);
         }

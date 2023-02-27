@@ -19,10 +19,9 @@ $item->last_name = $_POST['last_name'];
 $item->email = $_POST['email'];
 $item->pass = $_POST['pass'];
 
+http_response_code(201);
 if ($item->create_user()) {
-    http_response_code(201);
-    echo json_encode('User added to database.');
+    echo json_encode('Success: User Created');
 } else {
-    http_response_code(503);
-    echo json_encode('Failed to add user to database.');
+    echo json_encode('Error: User Creation Failed');
 }
