@@ -2,10 +2,7 @@
     import LunchAsync from './async/LunchAsync.vue';
     import type { MenuItem } from '@/types/item-types';
 
-    const props = defineProps<{
-        modelValue: MenuItem[];
-    }>();
-
+    const props = defineProps<{ modelValue: MenuItem[] }>();
     const emit = defineEmits<{
         (e: 'update:modelValue', newValue: MenuItem[]): void;
     }>();

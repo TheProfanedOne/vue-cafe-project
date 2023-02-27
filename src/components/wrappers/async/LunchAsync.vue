@@ -12,7 +12,7 @@
     }>();
 
     if (props.l_items.length === 0) {
-        const res = await mds.retrieveMenu("Breakfast");
+        const res = await mds.retrieveMenu("Lunch");
         if (res.data !== 'Error: Invalid Category') {
             emit('update:l_items', res.data);
         }
@@ -21,7 +21,7 @@
 
 <template>
     <MenuTable
-        currMenu="Breakfast"
+        currMenu="Lunch"
         :items="props.l_items"
     />
 </template>
