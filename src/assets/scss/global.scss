@@ -1,0 +1,49 @@
+@import './main.scss';
+
+body {
+    margin: 0;
+    background-color: $bg-main;
+    font-family: sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    color: $aw;
+
+    &, td {
+        border: 1px solid;
+    }
+    th {
+        border: 2px solid;
+    }
+    th, td {
+        width: 12rem;
+        box-sizing: border-box;
+        position: relative;
+    }
+    img {
+        height: 109px;
+        width: auto;
+        box-sizing: border-box;
+    }
+    td {
+        padding: 5px;
+
+        &.full-row {
+            text-align: center;
+            padding: 20px 0;
+        }
+        &.with-image {
+            padding: 0;
+        }
+    }
+    .with-image {
+        width: auto;
+    }
+}
+
+h1#fallback {
+    text-align: center;
+    color: $aw;
+    font-size: 7em;
+}
