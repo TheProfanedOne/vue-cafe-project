@@ -21,9 +21,7 @@
     const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     async function handleLogin() {
-        if (!(firstName.value && lastName.value && email.value && pass.value)) {
-            alert('Please fill out all fields.');
-        } else if (!emailRegex.test(email.value)) {
+        if (!emailRegex.test(email.value)) {
             alert('Please enter a valid email address.');
             email.value = '';
         } else if (!passRegex.test(pass.value)) {
@@ -63,7 +61,7 @@
                     firstName.value = '';
                     lastName.value = '';
                 }
-            } else if (res.data.includes('not found')) {
+            } else if (res.data.includes('Register')) {
                 if (confirm(res.data)) {
                     const salt = await bcrypt.genSalt(10);
                     const hash = await bcrypt.hash(user.pass, salt);
@@ -77,40 +75,44 @@
                 } else {
                     email.value = '';
                 }
+            } else {
+                alert(res.data);
             }
         }
     }
 </script>
 
 <template>
-    <fieldset>
-        <legend>Login/Register</legend>
+    <form @submit.prevent="handleLogin">
+        <fieldset>
+            <legend>Login/Register</legend>
 
-        <input type="text" v-model="firstName" placeholder="First Name" />
-        &nbsp;
-        <input type="text" v-model="lastName" placeholder="Last Name" />
+            <input type="text" placeholder="First Name" required v-model="firstName" />
+            &nbsp;
+            <input type="text" placeholder="Last Name" required v-model="lastName" />
 
-        <br />
-        <br />
+            <br />
+            <br />
 
-        <section>
-            <label for="mail">Email:</label>
-            <input type="email" id="mail" v-model="email" />
-        </section>
+            <section>
+                <label for="mail">Email:</label>
+                <input type="email" id="mail" required v-model="email" />
+            </section>
 
-        <br />
+            <br />
 
-        <section>
-            <label for="pass">Password:</label>
-            <input type="password" id="pass" v-model="pass" />
-        </section>
+            <section>
+                <label for="pass">Password:</label>
+                <input type="password" id="pass" required v-model="pass" />
+            </section>
 
-        <br />
+            <br />
 
-        <section class="button-box">
-            <button type="button" @click="handleLogin">Submit</button>
-        </section>
-    </fieldset>
+            <section class="button-box">
+                <button>Submit</button>
+            </section>
+        </fieldset>
+    </form>
 </template>
 
 <style scoped lang="scss">
