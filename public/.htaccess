@@ -1,1 +1,2 @@
-ErrorDocument 404 http://matthew.steverobinett.net/index.html
+ErrorDocument 404 /
+ErrorDocument 500 /
