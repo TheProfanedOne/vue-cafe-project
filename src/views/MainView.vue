@@ -1,8 +1,8 @@
 <script setup lang="ts">
-    import HomeWrapper from './wrappers/HomeWrapper.vue';
-    import BreakWrapper from './wrappers/BreakWrapper.vue';
-    import LunchWrapper from './wrappers/LunchWrapper.vue';
-    import DinnerWrapper from './wrappers/DinnerWrapper.vue';
+    import HomeWrapper from '@/components/wrappers/HomeWrapper.vue';
+    import BreakWrapper from '@/components/wrappers/BreakWrapper.vue';
+    import LunchWrapper from '@/components/wrappers/LunchWrapper.vue';
+    import DinnerWrapper from '@/components/wrappers/DinnerWrapper.vue';
     import { ref } from 'vue';
     import type { MenuItem, SpecialBundle } from '@/types/item-types';
     import { DateTime } from 'luxon';
