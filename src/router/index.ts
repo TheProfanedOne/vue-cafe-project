@@ -1,11 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import NotFoundView from '@/views/NotFoundView.vue';
-import RootView from '@/views/RootView.vue';
-import LoginView from '@/views/LoginView.vue';
-import HomeView from '@/views/HomeView.vue';
-import BreakView from '@/views/BreakView.vue';
-import LunchView from '@/views/LunchView.vue';
-import DinnerView from '@/views/DinnerView.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,37 +6,37 @@ const router = createRouter({
         {
             path: '/',
             name: 'root',
-            component: RootView,
+            component: () => import('@/views/RootView.vue'),
         },
         {
             path: '/login',
             name: 'login',
-            component: LoginView,
+            component: () => import('@/views/LoginView.vue'),
         },
         {
             path: '/home',
             name: 'home',
-            component: HomeView,
+            component: () => import('@/views/HomeView.vue'),
         },
         {
             path: '/breakfast',
             name: 'breakfast',
-            component: BreakView,
+            component: () => import('@/views/BreakView.vue'),
         },
         {
             path: '/lunch',
             name: 'lunch',
-            component: LunchView,
+            component: () => import('@/views/LunchView.vue'),
         },
         {
             path: '/dinner',
             name: 'dinner',
-            component: DinnerView,
+            component: () => import('@/views/DinnerView.vue'),
         },
         {
             path: '/:pathMatch(.*)*',
             name: 'not found',
-            component: NotFoundView,
+            component: () => import('@/views/NotFoundView.vue'),
         },
     ],
 });
