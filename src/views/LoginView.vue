@@ -13,8 +13,10 @@
     const route = useRoute();
     const router = useRouter();
 
+    const from = (route.query.from ?? '') as string;
+
     if (currUser.value !== '') {
-        router.push(`'/${route.params.from ?? ''}'`);
+        router.push(`'/${from}'`);
     }
 
     const firstName = ref('');
@@ -53,7 +55,7 @@
 
                 if (corPass && corName) {
                     setUser(user.email);
-                    router.push(`/${route.params.from ?? ''}`);
+                    router.push(`/${from}`);
                 } else if (!corPass && !corName) {
                     alert('Incorrect name and password.');
                     firstName.value = '';
@@ -75,7 +77,7 @@
                     const res2 = await uds.createUser(user);
                     if ((res2.data as string).includes('Success')) {
                         setUser(user.email);
-                        router.push(`/${route.params.from ?? ''}`);
+                        router.push(`/${from}`);
                     } else {
                         alert(res2.data);
                     }
