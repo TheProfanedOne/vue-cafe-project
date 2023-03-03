@@ -52,7 +52,7 @@
                 padding: 10px 0;
                 border-right: 1px solid $aw;
                 border-left: 1px solid $aw;
-                cursor: pointer;
+                text-decoration: none;
 
                 &:first-of-type {
                     border-left: 0px;
