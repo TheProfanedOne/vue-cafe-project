@@ -1,8 +1,12 @@
-<Directory /home4/steverq1/public_html/matthew>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews
-    </IfModule>
+<IfModule mod_negotiation.c>
+    Options -MultiViews
+</IfModule>
 
-    FallbackResource /matthew/index.html
-    ErrorDocument 500 /matthew/index.html
-</Directory>
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /home4/steverq1/public_html/matthew/
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
+</IfModule>
