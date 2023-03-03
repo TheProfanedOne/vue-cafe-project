@@ -1,37 +1,9 @@
 <script setup lang="ts">
     import bannerUrl from '@/assets/images/header/banner.jpg';
-
-    const props = defineProps<{ currMenu: string }>();
-    const emit = defineEmits<{
-        (e: 'update:currMenu', newMenu: string): void;
-    }>();
+    import { RouterLink } from 'vue-router';
 
     const cssVars = {
         banner: `url(${bannerUrl})`,
-    };
-
-    const onClickH = () => {
-        if (props.currMenu) {
-            emit('update:currMenu', '');
-        }
-    };
-
-    const onClickB = () => {
-        if (props.currMenu !== 'Breakfast') {
-            emit('update:currMenu', 'Breakfast');
-        }
-    };
-
-    const onClickL = () => {
-        if (props.currMenu !== 'Lunch') {
-            emit('update:currMenu', 'Lunch');
-        }
-    };
-
-    const onClickD = () => {
-        if (props.currMenu !== 'Dinner') {
-            emit('update:currMenu', 'Dinner');
-        }
     };
 </script>
 
@@ -41,10 +13,10 @@
             <span> RISE AND GRIND </span>
         </div>
         <nav>
-            <span @contextmenu.prevent @click="onClickH">Home</span>
-            <span @contextmenu.prevent @click="onClickB">Breakfast</span>
-            <span @contextmenu.prevent @click="onClickL">Lunch</span>
-            <span @contextmenu.prevent @click="onClickD">Dinner</span>
+            <RouterLink to="/home">Home</RouterLink>
+            <RouterLink to="/breakfast">Breakfast</RouterLink>
+            <RouterLink to="/lunch">Lunch</RouterLink>
+            <RouterLink to="/dinner">Dinner</RouterLink>
         </nav>
     </header>
 </template>
@@ -73,7 +45,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
 
-            span {
+            a {
                 width: 100%;
                 text-align: center;
                 color: $aw;

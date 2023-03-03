@@ -1,26 +1,21 @@
 <script setup lang="ts">
     import { DateTime } from 'luxon';
-    import type { SpecialBundle } from '@/types/item-types';
     import sds from '@/service/SpecialsDataService';
     import useTitle from '@/composables/title';
     import imageLinks from '@/composables/imageLinks';
+    import { inject } from 'vue';
+    import { specKey, type SpecInject } from '@/composables/keys';
 
     useTitle('Rise and Grind Cafe');
 
-    const props = defineProps<{
-        spec: SpecialBundle;
-    }>();
-
-    const emit = defineEmits<{
-        (e: 'update:spec', newValue: SpecialBundle): void;
-    }>();
+    const { spec, setSpec } = inject(specKey) as SpecInject;
 
     const rightNow = DateTime.now();
     const dayName = rightNow.weekdayLong;
 
-    if (props.spec.item === null || props.spec.now.weekday !== rightNow.weekday) {
+    if (spec.value.item === null || spec.value.now.weekday !== rightNow.weekday) {
         const res = await sds.retrieveSpecial(dayName);
-        emit('update:spec', {
+        setSpec({
             item: res.data !== 'Error: No Special Found' ? res.data : null,
             now: rightNow,
         });

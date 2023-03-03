@@ -1,5 +1,7 @@
 <script setup lang="ts">
-    import { ref } from 'vue';
+    import { ref, inject } from 'vue';
+    import { useRoute, useRouter } from 'vue-router';
+    import { userKey, type UserInject } from '@/composables/keys';
     import bcrypt from 'bcryptjs';
     import uds from '@/service/UsersDataService';
     import type { User } from '@/service/UsersDataService';
@@ -7,10 +9,13 @@
 
     useTitle('Login/Register');
 
-    defineProps<{ currentUser: string }>();
-    const emit = defineEmits<{
-        (e: 'update:currentUser', newValue: string): void;
-    }>();
+    const { currUser, setUser } = inject(userKey) as UserInject;
+
+    if (currUser.value !== '') {
+        const route = useRoute();
+        const router = useRouter();
+        router.push(`'/${route.params.rte ?? ''}'`);
+    }
 
     const firstName = ref('');
     const lastName = ref('');
@@ -47,7 +52,7 @@
                     user.last_name === res.data.last_name;
                 
                 if (corPass && corName) {
-                    emit('update:currentUser', user.email);
+                    setUser(user.email);
                 } else if (!corPass && !corName) {
                     alert('Incorrect name and password.');
                     firstName.value = '';
@@ -68,7 +73,7 @@
                     user.pass = hash.replace('$2a$', '$2y$');
                     const res2 = await uds.createUser(user);
                     if ((res2.data as string).includes('Success')) {
-                        emit('update:currentUser', user.email);
+                        setUser(user.email);
                     } else {
                         alert(res2.data);
                     }

@@ -1,20 +1,18 @@
 <script setup lang="ts">
-    import type { MenuItem } from '@/types/item-types';
     import MenuTable from '@/components/MenuTable.vue';
     import mds from '@/service/MenuDataService';
     import useTitle from '@/composables/title';
+    import { inject } from 'vue';
+    import { lMenuKey, type MenuInject } from '@/composables/keys';
 
     useTitle('Lunch Menu');
 
-    const props = defineProps<{ l_items: MenuItem[] }>();
-    const emit = defineEmits<{
-        (e: 'update:l_items', newValue: MenuItem[]): void;
-    }>();
+    const { menu, setMenu } = inject(lMenuKey) as MenuInject;
 
-    if (props.l_items.length === 0) {
+    if (menu.value.length === 0) {
         const res = await mds.retrieveMenu("Lunch");
         if (res.data !== 'Error: Invalid Category') {
-            emit('update:l_items', res.data);
+            setMenu(res.data);
         }
     }
 </script>
@@ -22,6 +20,6 @@
 <template>
     <MenuTable
         currMenu="Lunch"
-        :items="props.l_items"
+        :items="menu"
     />
 </template>
