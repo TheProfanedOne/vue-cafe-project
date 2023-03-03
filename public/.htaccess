@@ -3,3 +3,4 @@
 </IfModule>
 
 FallbackResource http://matthew.steverobinett.net/index.html
+ErrorDocument 500 http://matthew.steverobinett.net/index.html
