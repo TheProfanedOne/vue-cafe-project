@@ -14,6 +14,6 @@ overrides:
     options:
       trailingComma: none
 
-  - files: '*.yaml'
+  - files: ['*.yaml', '*.yml']
     options:
       tabWidth: 2
