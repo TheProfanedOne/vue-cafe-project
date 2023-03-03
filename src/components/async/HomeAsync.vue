@@ -5,20 +5,10 @@
     import imageLinks from '@/composables/imageLinks';
     import { inject } from 'vue';
     import { specKey, type SpecInject } from '@/composables/keys';
-    import { userKey, type UserInject } from '@/composables/keys';
-    import { useRouter } from 'vue-router';
-    import { onBeforeMount } from 'vue';
+    import useLoginRedirect from '@/composables/loginRedirect';
 
     useTitle('Rise and Grind Cafe');
-
-    const { currUser } = inject(userKey) as UserInject;
-    const router = useRouter();
-
-    onBeforeMount(() => {
-        if (currUser.value === '') {
-            router.push('/login/home');
-        }
-    });
+    useLoginRedirect('home');
 
     const { spec, setSpec } = inject(specKey) as SpecInject;
 
