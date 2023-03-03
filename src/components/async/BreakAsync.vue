@@ -4,8 +4,20 @@
     import useTitle from '@/composables/title';
     import { inject } from 'vue';
     import { bMenuKey, type MenuInject } from '@/composables/keys';
+    import { userKey, type UserInject } from '@/composables/keys';
+    import { useRouter } from 'vue-router';
+    import { onBeforeMount } from 'vue';
 
     useTitle('Breakfast Menu');
+
+    const { currUser } = inject(userKey) as UserInject;
+    const router = useRouter();
+
+    onBeforeMount(() => {
+        if (currUser.value === '') {
+            router.push('/login/home');
+        }
+    });
 
     const { menu, setMenu } = inject(bMenuKey) as MenuInject;
 

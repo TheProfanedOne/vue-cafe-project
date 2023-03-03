@@ -27,45 +27,21 @@ const router = createRouter({
             path: '/home',
             name: 'home',
             component: HomeView,
-            beforeEnter(_to, _from) {
-                const user = inject(userKey);
-                if (!user?.currUser.value) {
-                    return '/login/home';
-                }
-            },
         },
         {
             path: '/breakfast',
             name: 'breakfast',
             component: BreakView,
-            beforeEnter(_to, _from) {
-                const user = inject(userKey);
-                if (!user?.currUser.value) {
-                    return '/login/breakfast';
-                }
-            },
         },
         {
             path: '/lunch',
             name: 'lunch',
             component: LunchView,
-            beforeEnter(_to, _from) {
-                const user = inject(userKey);
-                if (!user?.currUser.value) {
-                    return '/login/lunch';
-                }
-            },
         },
         {
             path: '/dinner',
             name: 'dinner',
             component: DinnerView,
-            beforeEnter(_to, _from) {
-                const user = inject(userKey);
-                if (!user?.currUser.value) {
-                    return '/login/dinner';
-                }
-            },
         },
         {
             path: '/:pathMatch(.*)*',
