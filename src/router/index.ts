@@ -19,7 +19,7 @@ const router = createRouter({
             path: '/login',
             name: 'login',
             component: LoginView,
-            props: route => ({ from: route.query.from ?? '' })
+            props: route => ({ query: route.query.from })
         },
         {
             path: '/home',
