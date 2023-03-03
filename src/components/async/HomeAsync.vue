@@ -4,13 +4,13 @@
     import useTitle from '@/composables/title';
     import imageLinks from '@/composables/imageLinks';
     import { inject } from 'vue';
-    import { specKey, type SpecInject } from '@/composables/keys';
+    import { specKey } from '@/composables/keys';
     import useLoginRedirect from '@/composables/loginRedirect';
 
     useTitle('Rise and Grind Cafe');
     const notLoggedIn = useLoginRedirect('home');
 
-    const { spec, setSpec } = inject(specKey) as SpecInject;
+    const { spec, setSpec } = inject(specKey)!;
 
     const rightNow = DateTime.now();
     const dayName = rightNow.weekdayLong;

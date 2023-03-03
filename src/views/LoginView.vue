@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import { ref, inject } from 'vue';
     import { useRoute, useRouter } from 'vue-router';
-    import { userKey, type UserInject } from '@/composables/keys';
+    import { userKey } from '@/composables/keys';
     import bcrypt from 'bcryptjs';
     import uds from '@/service/UsersDataService';
     import type { User } from '@/service/UsersDataService';
@@ -9,7 +9,7 @@
 
     useTitle('Login/Register');
 
-    const { currUser, setUser } = inject(userKey) as UserInject;
+    const { currUser, setUser } = inject(userKey)!;
     const route = useRoute();
     const router = useRouter();
 

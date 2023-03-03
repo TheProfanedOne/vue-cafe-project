@@ -3,13 +3,13 @@
     import mds from '@/service/MenuDataService';
     import useTitle from '@/composables/title';
     import { inject } from 'vue';
-    import { bMenuKey, type MenuInject } from '@/composables/keys';
+    import { bMenuKey } from '@/composables/keys';
     import useLoginRedirect from '@/composables/loginRedirect';
 
     useTitle('Breakfast Menu');
     const notLoggedIn = useLoginRedirect('breakfast');
 
-    const { menu, setMenu } = inject(bMenuKey) as MenuInject;
+    const { menu, setMenu } = inject(bMenuKey)!;
 
     if (!notLoggedIn && menu.value.length === 0) {
         const res = await mds.retrieveMenu('Breakfast');
