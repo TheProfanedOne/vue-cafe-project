@@ -2,5 +2,4 @@
     Options -MutliViews
 </IfModule>
 
-FallbackResource /index.html
-ErrorDocument 500 /index.html
+FallbackResource http://matthew.steverobinett.net/index.html
