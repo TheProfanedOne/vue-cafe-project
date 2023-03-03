@@ -2,14 +2,11 @@
     Options -MultiViews
 </IfModule>
 
-# <IfModule mod_rewrite.c>
-#     RewriteEngine On
-#     RewriteBase /home4/steverq1/public_html/matthew/
-#     RewriteRule ^index\.html$ - [L]
-#     RewriteCond %{REQUEST_FILENAME} !-f
-#     RewriteCond %{REQUEST_FILENAME} !-d
-#     RewriteRule . /index.html [L]
-# </IfModule>
-
-FallbackResource /home4/steverq1/public_html/matthew/index.html
-
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /home4/steverq1/public_html/matthew/
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
+</IfModule>
