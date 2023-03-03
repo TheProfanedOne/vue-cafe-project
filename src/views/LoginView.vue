@@ -10,10 +10,10 @@
     useTitle('Login/Register');
 
     const { currUser, setUser } = inject(userKey) as UserInject;
+    const route = useRoute();
+    const router = useRouter();
 
     if (currUser.value !== '') {
-        const route = useRoute();
-        const router = useRouter();
         router.push(`'/${route.params.rte ?? ''}'`);
     }
 
@@ -53,6 +53,7 @@
                 
                 if (corPass && corName) {
                     setUser(user.email);
+                    router.push(`/${route.params.rte ?? ''}`);
                 } else if (!corPass && !corName) {
                     alert('Incorrect name and password.');
                     firstName.value = '';
@@ -74,6 +75,7 @@
                     const res2 = await uds.createUser(user);
                     if ((res2.data as string).includes('Success')) {
                         setUser(user.email);
+                        router.push(`/${route.params.rte ?? ''}`);
                     } else {
                         alert(res2.data);
                     }
