@@ -44,6 +44,10 @@ const router = createRouter({
             component: DinnerView,
         },
         {
+            path: '/index.html',
+            redirect: { name: 'root' }
+        },
+        {
             path: '/:pathMatch(.*)*',
             name: 'not found',
             component: NotFoundView
