@@ -3,3 +3,4 @@
 </IfModule>
 
 FallbackResource /index.html
+ErrorDocument 500 /index.html
