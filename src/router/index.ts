@@ -6,8 +6,6 @@ import HomeView from '@/views/HomeView.vue';
 import BreakView from '@/views/BreakView.vue';
 import LunchView from '@/views/LunchView.vue';
 import DinnerView from '@/views/DinnerView.vue';
-import { inject } from 'vue';
-import { userKey } from '@/composables/keys';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,9 +16,10 @@ const router = createRouter({
             component: RootView,
         },
         {
-            path: '/login/:rte?',
+            path: '/login',
             name: 'login',
             component: LoginView,
+            props: route => ({ from: route.query.from ?? '' })
         },
         {
             path: '/home',

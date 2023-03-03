@@ -9,7 +9,7 @@ export default function useLoginRedirect(path: string) {
 
     onBeforeMount(() => {
         if (notLoggedIn) {
-            router.push(`/login/${path}`);
+            router.push(`/login?from=${path}`);
         }
     });
 
