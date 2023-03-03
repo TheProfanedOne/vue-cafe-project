@@ -38,6 +38,9 @@ table {
         &.with-image {
             padding: 0;
         }
+        &:not(.with-image) {
+            text-align: center;
+        }
     }
     .with-image {
         width: auto;
