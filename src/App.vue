@@ -4,7 +4,7 @@
     import { RouterView } from 'vue-router';
     import { ref, provide } from 'vue';
     import { userKey, specKey, bMenuKey, lMenuKey, dMenuKey } from '@/composables/keys';
-    import type{ MenuItem, SpecialBundle } from '@/types/item-types';
+    import type { MenuItem, SpecialBundle } from '@/types/item-types';
     import { DateTime } from 'luxon';
 
     const currUser = ref('');

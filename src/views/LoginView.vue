@@ -22,7 +22,7 @@
     const email = ref('');
     const pass = ref('');
 
-    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     async function handleLogin() {
@@ -50,7 +50,7 @@
                 const corName =
                     user.first_name === res.data.first_name &&
                     user.last_name === res.data.last_name;
-                
+
                 if (corPass && corName) {
                     setUser(user.email);
                     router.push(`/${route.params.rte ?? ''}`);

@@ -8,14 +8,14 @@
     import useLoginRedirect from '@/composables/loginRedirect';
 
     useTitle('Rise and Grind Cafe');
-    useLoginRedirect('home');
+    const notLoggedIn = useLoginRedirect('home');
 
     const { spec, setSpec } = inject(specKey) as SpecInject;
 
     const rightNow = DateTime.now();
     const dayName = rightNow.weekdayLong;
 
-    if (spec.value.item === null || spec.value.now.weekday !== rightNow.weekday) {
+    if (!notLoggedIn && (spec.value.item === null || spec.value.now.weekday !== rightNow.weekday)) {
         const res = await sds.retrieveSpecial(dayName);
         setSpec({
             item: res.data !== 'Error: No Special Found' ? res.data : null,

@@ -10,13 +10,15 @@ table {
     border-collapse: collapse;
     color: $aw;
 
-    &, td {
+    &,
+    td {
         border: 1px solid;
     }
     th {
         border: 2px solid;
     }
-    th, td {
+    th,
+    td {
         width: 12rem;
         box-sizing: border-box;
         position: relative;

@@ -7,12 +7,12 @@
     import useLoginRedirect from '@/composables/loginRedirect';
 
     useTitle('Dinner Menu');
-    useLoginRedirect('dinner');
+    const notLoggedIn = useLoginRedirect('dinner');
 
     const { menu, setMenu } = inject(dMenuKey) as MenuInject;
 
-    if (menu.value.length === 0) {
-        const res = await mds.retrieveMenu("Dinner");
+    if (!notLoggedIn && menu.value.length === 0) {
+        const res = await mds.retrieveMenu('Dinner');
         if (res.data !== 'Error: Invalid Category') {
             setMenu(res.data);
         }
@@ -20,8 +20,5 @@
 </script>
 
 <template>
-    <MenuTable
-        currMenu="Dinner"
-        :items="menu"
-    />
+    <MenuTable currMenu="Dinner" :items="menu" />
 </template>

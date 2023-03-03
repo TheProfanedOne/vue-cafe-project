@@ -9,14 +9,13 @@ import DinnerView from '@/views/DinnerView.vue';
 import { inject } from 'vue';
 import { userKey } from '@/composables/keys';
 
-
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',
-            name: "root",
-            component: RootView
+            name: 'root',
+            component: RootView,
         },
         {
             path: '/login/:rte?',
@@ -45,14 +44,14 @@ const router = createRouter({
         },
         {
             path: '/index.html',
-            redirect: { name: 'root' }
+            redirect: { name: 'root' },
         },
         {
             path: '/:pathMatch(.*)*',
             name: 'not found',
-            component: NotFoundView
+            component: NotFoundView,
         },
-    ]
+    ],
 });
 
 export default router;
