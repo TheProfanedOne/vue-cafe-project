@@ -5,10 +5,10 @@ import { useUserStore } from '@/stores/userStore';
 const store = useUserStore();
 const router = useRouter();
 
-if (store.currUser === '') {
-    router.push('/login');
+if (store.notLoggedIn) {
+    router.replace({ name: 'login' });
 } else {
-    router.push('/home');
+    router.replace({ name: 'home' });
 }
 </script>
 

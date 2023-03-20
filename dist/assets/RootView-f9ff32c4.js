@@ -1,0 +1,1 @@
+import{d as r,u as t}from"./index-85c03f5a.js";import{u as n}from"./userStore-6826db3e.js";const p=r({__name:"RootView",setup(s){const o=n(),e=t();return o.notLoggedIn?e.replace({name:"login"}):e.replace({name:"home"}),(a,u)=>null}});export{p as default};

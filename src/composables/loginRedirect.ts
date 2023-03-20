@@ -7,9 +7,10 @@ export default function useLoginRedirect(path: string) {
     const router = useRouter();
 
     onBeforeMount(() => {
-        if (store.notLoggedIn) {
-            router.push(`/login?from=${path}`);
-        }
+        if (store.notLoggedIn) router.replace({
+            path: `/login?from=${path}`
+        });
+
     });
 
     return store.notLoggedIn;

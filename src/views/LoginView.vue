@@ -12,10 +12,10 @@ const store = useUserStore();
 const route = useRoute();
 const router = useRouter();
 
-const from = (route.query.from ?? '') as string;
+const from = (route.query.from ?? 'root') as string;
 
-if (store.currUser === '') {
-    router.push(`'/${from}'`);
+if (!store.notLoggedIn) {
+    router.push({ name: `${from}` });
 }
 
 const firstName = ref('');
@@ -54,7 +54,7 @@ async function handleLogin() {
 
             if (corPass && corName) {
                 store.currUser = user.email;
-                router.push(`/${from}`);
+                router.push({ name: `${from}` });
             } else if (!corPass && !corName) {
                 alert('Incorrect name and password.');
                 firstName.value = '';
@@ -76,7 +76,7 @@ async function handleLogin() {
                 const res2 = await uds.createUser(user);
                 if ((res2.data as string).includes('Success')) {
                     store.currUser = user.email;
-                    router.push(`/${from}`);
+                    router.push({ name: `${from}` });
                 } else {
                     alert(res2.data);
                 }
