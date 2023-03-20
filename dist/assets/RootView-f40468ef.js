@@ -1,1 +1,0 @@
-import{d as o,u as r,i as t,a as u}from"./index-dbc2d645.js";const p=o({__name:"RootView",setup(n){const e=r(),{currUser:s}=t(u);return s.value===""?e.push("/login"):e.push("/home"),(a,c)=>null}});export{p as default};

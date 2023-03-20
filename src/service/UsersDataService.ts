@@ -2,12 +2,12 @@ import axios from 'axios';
 
 const API_URL = '/backend';
 
-export type User = {
+interface User {
     first_name: string;
     last_name: string;
     email: string;
     pass: string;
-};
+}
 
 export function userLookup(email: string) {
     return axios.get(`${API_URL}/user_lookup.php`, {
@@ -22,4 +22,8 @@ export function createUser(user: User) {
 }
 
 const uds = { userLookup, createUser };
-export default uds;
+export {
+    uds as default,
+    type User,
+};
+

@@ -1,16 +1,15 @@
 <script setup lang="ts">
-    import { useRouter } from 'vue-router';
-    import { inject } from 'vue';
-    import { userKey } from '@/composables/keys';
+import { useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/userStore';
 
-    const router = useRouter();
-    const { currUser } = inject(userKey)!;
+const store = useUserStore();
+const router = useRouter();
 
-    if (currUser.value === '') {
-        router.push('/login');
-    } else {
-        router.push('/home');
-    }
+if (store.currUser === '') {
+    router.push('/login');
+} else {
+    router.push('/home');
+}
 </script>
 
 <template></template>

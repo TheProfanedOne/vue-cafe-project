@@ -11,4 +11,4 @@ export function retrieveSpecial(dayName: string) {
 }
 
 const sds = { retrieveSpecial };
-export default sds;
+export { sds as default };

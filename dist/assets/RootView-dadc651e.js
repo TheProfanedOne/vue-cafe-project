@@ -1,0 +1,1 @@
+import{d as r,u as s}from"./index-903f8c0e.js";import{u as t}from"./userStore-e823b9a7.js";const m=r({__name:"RootView",setup(u){const o=t(),e=s();return o.currUser===""?e.push("/login"):e.push("/home"),(n,p)=>null}});export{m as default};

@@ -1,27 +1,26 @@
 <script setup lang="ts">
-    import { DateTime } from 'luxon';
-    import sds from '@/service/SpecialsDataService';
-    import useTitle from '@/composables/title';
-    import imageLinks from '@/composables/imageLinks';
-    import { inject } from 'vue';
-    import { specKey } from '@/composables/keys';
-    import useLoginRedirect from '@/composables/loginRedirect';
+import { DateTime } from 'luxon';
+import sds from '@/service/SpecialsDataService';
+import useTitle from '@/composables/title';
+import imageLinks from '@/composables/imageLinks';
+import useLoginRedirect from '@/composables/loginRedirect';
+import { useSpecialStore } from '@/stores/specialStore';
 
-    useTitle('Rise and Grind Cafe');
-    const notLoggedIn = useLoginRedirect('home');
+useTitle('Rise and Grind Cafe');
+const notLoggedIn = useLoginRedirect('home');
 
-    const { spec, setSpec } = inject(specKey)!;
+const spec = useSpecialStore();
 
-    const rightNow = DateTime.now();
-    const dayName = rightNow.weekdayLong;
+const rightNow = DateTime.now();
+const dayName = rightNow.weekdayLong;
 
-    if (!notLoggedIn && (spec.value.item === null || spec.value.now.weekday !== rightNow.weekday)) {
-        const res = await sds.retrieveSpecial(dayName);
-        setSpec({
-            item: res.data !== 'Error: No Special Found' ? res.data : null,
-            now: rightNow,
-        });
-    }
+if (!notLoggedIn && (spec.item === null || spec.weekday !== rightNow.weekday)) {
+    const res = await sds.retrieveSpecial(dayName);
+    spec.$patch({
+        item: res.data !== 'Error: No Special Found' ? res.data : null,
+        now: rightNow,
+    });
+}
 </script>
 
 <template>

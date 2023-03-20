@@ -1,10 +1,10 @@
 <script setup lang="ts">
-    import bannerUrl from '@/assets/images/header/banner.jpg';
-    import { RouterLink } from 'vue-router';
+import bannerUrl from '@/assets/images/header/banner.jpg';
+import { RouterLink } from 'vue-router';
 
-    const cssVars = {
-        banner: `url(${bannerUrl})`,
-    };
+const cssVars = {
+    banner: `url(${bannerUrl})`,
+};
 </script>
 
 <template>
@@ -22,45 +22,46 @@
 </template>
 
 <style scoped lang="scss">
-    @import '@/assets/scss/main.scss';
+@import '@/assets/scss/main.scss';
 
-    header {
+header {
+    width: 100%;
+    background-color: $coffee;
+    @include flex(column wrap);
+    flex: $flex-hf;
+
+    div {
+        font-family: 'Wild World';
+        font-size: 7em;
+        color: $aw;
+        padding: 0.3em 0;
+        @include flex(column, true);
+        justify-self: center;
         width: 100%;
-        background-color: $coffee;
-        @include flex(column wrap);
-        flex: $flex-hf;
+        background-image: v-bind('cssVars.banner');
+    }
 
-        div {
-            font-family: 'Wild World';
-            font-size: 7em;
-            color: $aw;
-            padding: 0.3em 0;
-            @include flex(column, true);
-            justify-self: center;
+    nav {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        a {
             width: 100%;
-            background-image: v-bind('cssVars.banner');
-        }
+            text-align: center;
+            color: $aw;
+            padding: 10px 0;
+            border-right: 1px solid $aw;
+            border-left: 1px solid $aw;
+            text-decoration: none;
 
-        nav {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            &:first-of-type {
+                border-left: 0px;
+            }
 
-            a {
-                width: 100%;
-                text-align: center;
-                color: $aw;
-                padding: 10px 0;
-                border-right: 1px solid $aw;
-                border-left: 1px solid $aw;
-                text-decoration: none;
-
-                &:first-of-type {
-                    border-left: 0px;
-                }
-                &:last-of-type {
-                    border-right: 0px;
-                }
+            &:last-of-type {
+                border-right: 0px;
             }
         }
     }
+}
 </style>

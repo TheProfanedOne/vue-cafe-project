@@ -1,10 +1,10 @@
-import { inject, onBeforeMount } from 'vue';
+import { onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router';
-import { userKey } from '@/composables/keys';
+import { useUserStore } from '@/stores/userStore';
 
 export default function useLoginRedirect(path: string) {
-    const { currUser } = inject(userKey)!;
-    const notLoggedIn = currUser.value === '';
+    const store = useUserStore();
+    const notLoggedIn = store.currUser === '';
     const router = useRouter();
 
     onBeforeMount(() => {

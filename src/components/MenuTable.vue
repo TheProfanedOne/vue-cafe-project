@@ -1,17 +1,17 @@
 <script setup lang="ts">
-    import type { MenuItem } from '@/types/item-types';
-    import imageLinks from '@/composables/imageLinks';
+import type { MenuItem } from '@/types/item-types';
+import imageLinks from '@/composables/imageLinks';
 
-    const props = defineProps<{
-        currMenu: string;
-        items: MenuItem[];
-    }>();
+defineProps<{
+    currMenu: string;
+    items: MenuItem[];
+}>();
 </script>
 
 <template>
     <table>
         <caption>
-            <h3>{{ props.currMenu }} Menu</h3>
+            <h3>{{ currMenu }} Menu</h3>
         </caption>
         <thead>
             <tr>
@@ -21,7 +21,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="item in props.items" :key="item.item_name">
+            <tr v-for="item in items" :key="item.item_name">
                 <td>{{ item.item_name }}</td>
                 <td>{{ item.item_price }}</td>
                 <td class="with-image">

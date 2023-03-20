@@ -11,4 +11,4 @@ export function retrieveMenu(category: string) {
 }
 
 const mds = { retrieveMenu };
-export default mds;
+export { mds as default };

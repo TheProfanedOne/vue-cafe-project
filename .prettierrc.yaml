@@ -7,7 +7,7 @@ printWidth: 100
 overrides:
   - files: '*.vue'
     options:
-      vueIndentScriptAndStyle: true
+      vueIndentScriptAndStyle: false
       parser: vue
 
   - files: ['*.json', '*.jsonc']
