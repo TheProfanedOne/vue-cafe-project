@@ -1,8 +1,9 @@
 import { defineStore } from "pinia";
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 export const useUserStore = defineStore('user', () => {
     const currUser = ref('');
-    return { currUser };
+    const notLoggedIn = computed(() => currUser.value === '');
+    return { currUser, notLoggedIn };
 });
 

@@ -1,17 +1,16 @@
 import { onBeforeMount } from 'vue';
-import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/userStore';
+import { useRouter } from 'vue-router';
 
 export default function useLoginRedirect(path: string) {
     const store = useUserStore();
-    const notLoggedIn = store.currUser === '';
     const router = useRouter();
 
     onBeforeMount(() => {
-        if (notLoggedIn) {
+        if (store.notLoggedIn) {
             router.push(`/login?from=${path}`);
         }
     });
 
-    return notLoggedIn;
+    return store.notLoggedIn;
 }
